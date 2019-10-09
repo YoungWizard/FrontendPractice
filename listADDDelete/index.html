@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./vue.js"></script>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./hello.js" defer></script>
+
+</head>
+
+<body>
+    <div id="app">
+
+        <div>
+            <div>add</div>
+            <div>
+                <label for="id1">Id</label><input type="text" id="id1" v-model="id">
+                <label for="name1">Name</label><input type="text" id="name1" v-model="name">
+                <input type="button" value="Add" @click="add">
+                <label for="search">search</label><input type="text" id="search1" v-model="keyword" v-focus>
+            </div>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Ctime</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="list in search(keyword)" :key="list.id">
+                    <td>{{list.id}}</td>
+                    <td>{{list.name}}</td>
+                    <td>{{list.ctime |dateFormat()}}</td>
+                    <td><a href="#" @click.prevent="del(list.id)">delete</a> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
